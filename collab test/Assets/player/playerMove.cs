@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     //var for movement and camera*****************
-    [SerializeField] private int playerSpeed = 6;
+    [SerializeField] private int playerSpeed ;
     public Transform orientation;
     Vector3 moveDirection;
     public Rigidbody rb;
@@ -38,7 +38,16 @@ public class playerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.LeftControl) && grounded)
+        {
+            playerSpeed = 15;
 
+
+        }
+        else
+        {
+            playerSpeed = 6;
+        }
         MyInput();
         //ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
